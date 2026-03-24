@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Automated Quiz Engine</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PDF + QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Automated Quiz Engine</h1>
+
+        <!-- START BOX -->
+        <div id="startBox">
+
+            <input type="text" id="username" placeholder="Enter Your Name">
+            <input type="text" id="VTUNo" placeholder="Enter Your VTU No">
+            <input type="text" id="Slot" placeholder="Enter Slot No">
+            <input type="text" id="Semester" value="WS2526" readonly>
+
+            <br><br>
+
+            <button onclick="startQuiz()">Start Quiz</button>
+
+        </div>
+
+        <!-- QUIZ BOX -->
+        <div id="quizBox" style="display:none">
+
+            <div class="top">
+                <span id="questionNumber"></span>
+                <span id="timer">30</span>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+
+            <h2 id="question"></h2>
+
+            <div id="answers"></div>
+
+            <div class="navigation">
+                <button id="backBtn" onclick="previousQuestion()">⬅ Back</button>
+                <button id="nextBtn" onclick="nextQuestion()">Next ➡</button>
+            </div>
+
+        </div>
+
+        <!-- RESULT BOX -->
+        <div id="resultBox" style="display:none">
+
+            <h2>Quiz Completed 🎉</h2>
+            <p id="score"></p>
+
+            <button onclick="downloadCertificate()">Download Certificate</button>
+
+        </div>
+
+    </div>
+
+    <!-- FIREBASE (ONLY THIS SHOULD BE MODULE) -->
+    <script type="module">
+
+        // Import only the Firebase SDKs you need (modular)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDWIb2l71iNmJ85H7C2bOsohp5xEkGsaY4",
+            authDomain: "vishnuquiz-427de.firebaseapp.com",
+            projectId: "vishnuquiz-427de",
+            storageBucket: "vishnuquiz-427de.appspot.com",
+            messagingSenderId: "791938682305",
+            appId: "1:791938682305:web:ce7bdd0a61dfd0a7c37340",
+            measurementId: "G-TSZ7K09285"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+
+    </script>
+
+    <!-- MAIN JS (NORMAL SCRIPT ONLY ONCE) -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
