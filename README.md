@@ -1,4 +1,3 @@
-# Automated-Quiz-Engine-with-PDF-Certification-Generation
 
 # 🎯 Automated Quiz Engine with PDF Certificate Generation
 
